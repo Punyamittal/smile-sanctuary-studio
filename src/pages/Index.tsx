@@ -186,25 +186,6 @@ const Index = () => {
         <HeroSection />
       </div>
 
-      {/* Quick facts band */}
-      <section className="py-16 bg-card border-y border-border relative overflow-hidden">
-        <motion.img src={floatingTooth} alt="" className="absolute -bottom-6 right-[8%] w-20 opacity-[0.07] pointer-events-none" animate={{ y: [0, -8, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }} />
-        <div className="container mx-auto px-4 grid md:grid-cols-3 gap-8 relative z-10">
-          {quickFacts.map((f, i) => (
-            <ScrollReveal key={f.title} delay={i * 0.12}>
-              <motion.div whileHover={{ y: -4 }} className="flex gap-5 items-start">
-                <div className="w-14 h-14 rounded-2xl bg-blue-light flex items-center justify-center shrink-0">
-                  <f.icon className="w-6 h-6 text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-foreground mb-1">{f.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
-                </div>
-              </motion.div>
-            </ScrollReveal>
-          ))}
-        </div>
-      </section>
 
       {/* ═══════════ ABOUT ═══════════ */}
       <section id="about" className="py-24 bg-background relative overflow-hidden">
@@ -254,29 +235,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Philosophy */}
-      <section className="py-24 bg-card relative overflow-hidden">
-        <motion.img src={toothShield} alt="" className="absolute top-10 left-[3%] w-24 md:w-32 opacity-[0.06] pointer-events-none" animate={{ y: [0, -12, 0] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }} />
-        <div className="container mx-auto px-4 relative z-10">
-          <ScrollReveal className="text-center mb-16">
-            <p className="text-sm font-medium text-accent tracking-widest uppercase mb-4">My Philosophy</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground">What I Believe In</h2>
-          </ScrollReveal>
-          <div className="grid sm:grid-cols-2 gap-8">
-            {philosophy.map((p, i) => (
-              <ScrollReveal key={p.title} delay={i * 0.1}>
-                <motion.div whileHover={{ y: -6 }} className="flex gap-5 items-start bg-background rounded-2xl p-8 border border-border/50 hover:shadow-lg transition-all">
-                  <div className="w-12 h-12 rounded-xl bg-blue-light flex items-center justify-center shrink-0"><p.icon className="w-5 h-5 text-primary" /></div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-2">{p.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
-                  </div>
-                </motion.div>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Timeline */}
       <section className="py-24 bg-background relative overflow-hidden" ref={timelineRef}>
