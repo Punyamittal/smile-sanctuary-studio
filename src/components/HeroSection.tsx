@@ -2,7 +2,9 @@ import { motion } from "framer-motion";
 import { ArrowRight, Clock, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import useCountUp from "@/hooks/useCountUp";
-import Tooth3D from "@/components/Tooth3D";
+import { lazy, Suspense } from "react";
+
+const Tooth3D = lazy(() => import("@/components/Tooth3D"));
 
 const statsData = [
   { value: 15, suffix: "+", label: "Years of Experience" },
@@ -44,7 +46,6 @@ const HeroSection = () => {
 
   return (
     <section id="home" className="relative min-h-screen flex flex-col overflow-hidden pt-20">
-      {/* Background decorative circles */}
       <motion.div
         className="absolute top-0 left-0 w-[600px] h-[600px] rounded-full bg-blue-light -translate-x-1/3 -translate-y-1/4 opacity-60"
         animate={{ scale: [1, 1.05, 1] }}
@@ -57,7 +58,6 @@ const HeroSection = () => {
       />
 
       <div className="container mx-auto px-4 flex-1 grid lg:grid-cols-[1fr_auto_1fr] gap-8 items-center relative z-10 py-12">
-        {/* Left – headline + CTA */}
         <div className="space-y-6">
           <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[0.95] text-primary uppercase perspective-[600px]">
             {words.map((word, i) => (
@@ -104,17 +104,22 @@ const HeroSection = () => {
           </motion.div>
         </div>
 
-        {/* Center – 3D Tooth */}
+        {/* Center – 3D Tooth (lazy loaded) */}
         <motion.div
           initial={{ opacity: 0, scale: 0.7 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.3, type: "spring", stiffness: 100 }}
           className="flex justify-center"
         >
-          <Tooth3D className="w-[280px] h-[350px] md:w-[380px] md:h-[450px] lg:w-[420px] lg:h-[500px]" />
+          <Suspense fallback={
+            <div className="w-[280px] h-[350px] md:w-[380px] md:h-[450px] lg:w-[420px] lg:h-[500px] flex items-center justify-center">
+              <div className="w-20 h-20 rounded-full border-4 border-blue-light border-t-primary animate-spin" />
+            </div>
+          }>
+            <Tooth3D className="w-[280px] h-[350px] md:w-[380px] md:h-[450px] lg:w-[420px] lg:h-[500px]" />
+          </Suspense>
         </motion.div>
 
-        {/* Right – stats */}
         <div className="space-y-8 lg:pl-8">
           {statsData.map((s, i) => (
             <StatItem key={i} {...s} delay={0.5 + i * 0.2} />
@@ -122,7 +127,6 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Marquee ticker */}
       <div className="relative z-10 border-t border-border bg-card/50 backdrop-blur-sm py-4 overflow-hidden">
         <div className="animate-marquee flex whitespace-nowrap">
           {[...marqueeItems, ...marqueeItems].map((item, i) => (
