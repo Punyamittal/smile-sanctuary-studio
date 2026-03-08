@@ -5,6 +5,9 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Shield, Heart, Award, GraduationCap, Calendar, Users, CheckCircle2, Lightbulb, Smile, Stethoscope } from "lucide-react";
 import doc2 from "@/assets/doctor2.jpg";
+import floatingTooth from "@/assets/floating-tooth.png";
+import toothShield from "@/assets/tooth-shield.png";
+import toothbrush from "@/assets/toothbrush.png";
 
 const stats = [
   { icon: Shield, label: "Years of Practice", value: 15, suffix: "+" },
@@ -70,8 +73,24 @@ const About = () => {
       />
 
       {/* Bio section */}
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-4">
+      <section className="py-24 bg-background relative overflow-hidden">
+        {/* Floating images */}
+        <motion.img
+          src={floatingTooth}
+          alt=""
+          className="absolute top-16 right-[4%] w-24 md:w-32 opacity-[0.07] pointer-events-none"
+          animate={{ y: [0, -15, 0], rotate: [0, 8, 0] }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.img
+          src={toothbrush}
+          alt=""
+          className="absolute bottom-20 left-[2%] w-20 md:w-28 opacity-[0.06] pointer-events-none"
+          animate={{ y: [0, 10, 0], rotate: [-3, 3, -3] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
+
+        <div className="container mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <ScrollReveal direction="left">
               <div className="relative">
@@ -123,8 +142,16 @@ const About = () => {
       </section>
 
       {/* Philosophy */}
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-4">
+      <section className="py-24 bg-background relative overflow-hidden">
+        <motion.img
+          src={toothShield}
+          alt=""
+          className="absolute top-10 left-[3%] w-24 md:w-32 opacity-[0.06] pointer-events-none"
+          animate={{ y: [0, -12, 0] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        />
+
+        <div className="container mx-auto px-4 relative z-10">
           <ScrollReveal className="text-center mb-16">
             <p className="text-sm font-medium text-accent tracking-widest uppercase mb-4">My Philosophy</p>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">What I Believe In</h2>
@@ -151,15 +178,22 @@ const About = () => {
       </section>
 
       {/* Timeline */}
-      <section className="py-24 bg-card" ref={timelineRef}>
-        <div className="container mx-auto px-4">
+      <section className="py-24 bg-card relative overflow-hidden" ref={timelineRef}>
+        <motion.img
+          src={floatingTooth}
+          alt=""
+          className="absolute bottom-12 right-[5%] w-20 md:w-28 opacity-[0.05] pointer-events-none"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
+
+        <div className="container mx-auto px-4 relative z-10">
           <ScrollReveal className="text-center mb-16">
             <p className="text-sm font-medium text-accent tracking-widest uppercase mb-4">Career Journey</p>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">Professional Timeline</h2>
           </ScrollReveal>
 
           <div className="relative max-w-3xl mx-auto">
-            {/* Vertical line */}
             <motion.div
               className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-border md:-translate-x-px"
               initial={{ scaleY: 0 }}
@@ -196,8 +230,16 @@ const About = () => {
       </section>
 
       {/* Fun dental facts */}
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-4">
+      <section className="py-24 bg-background relative overflow-hidden">
+        <motion.img
+          src={toothbrush}
+          alt=""
+          className="absolute top-8 right-[3%] w-20 md:w-28 opacity-[0.06] pointer-events-none rotate-12"
+          animate={{ y: [0, -10, 0] }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+        />
+
+        <div className="container mx-auto px-4 relative z-10">
           <ScrollReveal className="text-center mb-16">
             <p className="text-sm font-medium text-accent tracking-widest uppercase mb-4">Did You Know?</p>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">Fun Dental Facts</h2>

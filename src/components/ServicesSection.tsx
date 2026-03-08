@@ -6,6 +6,8 @@ import {
 import ScrollReveal from "@/components/ScrollReveal";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import floatingTooth from "@/assets/floating-tooth.png";
+import dentalMirror from "@/assets/dental-mirror.png";
 
 const services = [
   { icon: Sparkles, title: "Teeth Cleaning", desc: "Thorough professional cleaning to keep your teeth and gums healthy." },
@@ -21,7 +23,23 @@ const ServicesSection = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-24 bg-background relative" ref={ref}>
+    <section className="py-24 bg-background relative overflow-hidden" ref={ref}>
+      {/* Floating decorative images */}
+      <motion.img
+        src={floatingTooth}
+        alt=""
+        className="absolute -top-6 right-[5%] w-24 md:w-32 opacity-10 pointer-events-none"
+        animate={{ y: [0, -18, 0], rotate: [0, 10, 0] }}
+        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.img
+        src={dentalMirror}
+        alt=""
+        className="absolute bottom-10 left-[3%] w-20 md:w-28 opacity-8 pointer-events-none"
+        animate={{ y: [0, 12, 0], rotate: [0, -6, 0] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+      />
+
       <div className="container mx-auto px-4 relative z-10">
         <ScrollReveal className="text-center mb-16">
           <p className="text-sm font-medium text-accent tracking-widest uppercase mb-4">My Services</p>

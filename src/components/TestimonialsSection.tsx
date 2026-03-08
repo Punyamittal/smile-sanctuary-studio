@@ -4,6 +4,7 @@ import { Star, Quote, ArrowRight } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import sparkleTooth from "@/assets/sparkle-tooth.png";
 
 const testimonials = [
   { name: "Emily Johnson", text: "Dr. Mitchell is incredible. She made me feel so relaxed during my root canal — I barely felt a thing!", rating: 5 },
@@ -16,8 +17,24 @@ const TestimonialsSection = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-24 bg-card" ref={ref}>
-      <div className="container mx-auto px-4">
+    <section className="py-24 bg-card relative overflow-hidden" ref={ref}>
+      {/* Floating sparkle tooth */}
+      <motion.img
+        src={sparkleTooth}
+        alt=""
+        className="absolute top-10 right-[4%] w-20 md:w-28 opacity-10 pointer-events-none"
+        animate={{ y: [0, -14, 0], rotate: [0, 8, 0] }}
+        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.img
+        src={sparkleTooth}
+        alt=""
+        className="absolute bottom-8 left-[5%] w-14 md:w-20 opacity-[0.06] pointer-events-none -scale-x-100"
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+      />
+
+      <div className="container mx-auto px-4 relative z-10">
         <ScrollReveal className="text-center mb-16">
           <p className="text-sm font-medium text-accent tracking-widest uppercase mb-4">Patient Reviews</p>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground">What My Patients Say</h2>

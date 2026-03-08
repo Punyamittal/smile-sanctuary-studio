@@ -1,12 +1,11 @@
 import PageHeader from "@/components/PageHeader";
 import ScrollReveal from "@/components/ScrollReveal";
 import { motion, useInView } from "framer-motion";
-import { useRef, lazy, Suspense } from "react";
+import { useRef } from "react";
 import {
   Sparkles, Sun, Wrench, Stethoscope, Baby, Scissors,
   CheckCircle2, ArrowRight, HelpCircle,
 } from "lucide-react";
-import R3FErrorBoundary from "@/components/R3FErrorBoundary";
 import {
   Accordion,
   AccordionContent,
@@ -15,48 +14,43 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-
-const FloatingDentalElements = lazy(() => import("@/components/FloatingDentalElements"));
+import floatingTooth from "@/assets/floating-tooth.png";
+import dentalMirror from "@/assets/dental-mirror.png";
+import sparkleTooth from "@/assets/sparkle-tooth.png";
 
 const services = [
   {
-    icon: Sparkles,
-    title: "Teeth Cleaning",
+    icon: Sparkles, title: "Teeth Cleaning",
     desc: "Professional cleaning removes plaque and tartar buildup that regular brushing can't reach, preventing gum disease and cavities.",
     benefits: ["Prevents gum disease", "Removes surface stains", "Freshens breath", "Early problem detection"],
     duration: "45-60 min",
   },
   {
-    icon: Sun,
-    title: "Teeth Whitening",
+    icon: Sun, title: "Teeth Whitening",
     desc: "In-office professional whitening can brighten your teeth up to 8 shades in a single visit using safe, clinically-proven methods.",
     benefits: ["Up to 8 shades whiter", "Safe for enamel", "Long-lasting results", "Boosts confidence"],
     duration: "60-90 min",
   },
   {
-    icon: Wrench,
-    title: "Dental Implants",
+    icon: Wrench, title: "Dental Implants",
     desc: "Titanium implants fused to your jawbone provide a permanent, natural-looking foundation for replacement teeth.",
     benefits: ["Permanent solution", "Preserves jawbone", "Natural appearance", "Eat anything comfortably"],
     duration: "1-2 hours",
   },
   {
-    icon: Stethoscope,
-    title: "Root Canal Therapy",
+    icon: Stethoscope, title: "Root Canal Therapy",
     desc: "Modern root canals are virtually painless. I remove infected pulp, clean the canal, and seal it to save your natural tooth.",
     benefits: ["Saves natural teeth", "Pain-free with anesthesia", "Prevents infection spread", "Quick recovery"],
     duration: "60-90 min",
   },
   {
-    icon: Baby,
-    title: "Pediatric Dentistry",
+    icon: Baby, title: "Pediatric Dentistry",
     desc: "Specialized gentle care for children, building positive dental habits from an early age in a fun, stress-free environment.",
     benefits: ["Kid-friendly environment", "Preventive sealants", "Fluoride treatments", "Growth monitoring"],
     duration: "30-45 min",
   },
   {
-    icon: Scissors,
-    title: "Oral Surgery",
+    icon: Scissors, title: "Oral Surgery",
     desc: "From wisdom teeth removal to corrective jaw surgery, performed with precision and advanced sedation for maximum comfort.",
     benefits: ["IV sedation available", "Minimally invasive", "Fast healing protocols", "Post-op care included"],
     duration: "Varies",
@@ -92,12 +86,22 @@ const Services = () => {
       />
 
       {/* Services grid */}
-      <section className="py-24 bg-background relative" ref={ref}>
-        <R3FErrorBoundary>
-          <Suspense fallback={null}>
-            <FloatingDentalElements className="absolute inset-0 opacity-10 pointer-events-none" />
-          </Suspense>
-        </R3FErrorBoundary>
+      <section className="py-24 bg-background relative overflow-hidden" ref={ref}>
+        {/* Floating images */}
+        <motion.img
+          src={floatingTooth}
+          alt=""
+          className="absolute top-12 right-[4%] w-24 md:w-32 opacity-[0.07] pointer-events-none"
+          animate={{ y: [0, -16, 0], rotate: [0, 10, 0] }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.img
+          src={dentalMirror}
+          alt=""
+          className="absolute bottom-16 left-[3%] w-20 md:w-28 opacity-[0.06] pointer-events-none"
+          animate={{ y: [0, 12, 0], rotate: [0, -5, 0] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -134,8 +138,16 @@ const Services = () => {
       </section>
 
       {/* Process steps */}
-      <section className="py-24 bg-card">
-        <div className="container mx-auto px-4">
+      <section className="py-24 bg-card relative overflow-hidden">
+        <motion.img
+          src={sparkleTooth}
+          alt=""
+          className="absolute top-8 left-[4%] w-20 md:w-28 opacity-[0.06] pointer-events-none"
+          animate={{ y: [0, -10, 0] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        />
+
+        <div className="container mx-auto px-4 relative z-10">
           <ScrollReveal className="text-center mb-16">
             <p className="text-sm font-medium text-accent tracking-widest uppercase mb-4">How It Works</p>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">My Treatment Process</h2>
@@ -162,8 +174,16 @@ const Services = () => {
       </section>
 
       {/* FAQ */}
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-4">
+      <section className="py-24 bg-background relative overflow-hidden">
+        <motion.img
+          src={floatingTooth}
+          alt=""
+          className="absolute bottom-12 right-[5%] w-20 md:w-28 opacity-[0.05] pointer-events-none"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
+
+        <div className="container mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             <ScrollReveal direction="left">
               <div className="sticky top-32">

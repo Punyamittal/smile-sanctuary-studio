@@ -3,13 +3,23 @@ import { useRef } from "react";
 import { ShieldCheck, Zap, Microscope } from "lucide-react";
 import procedureBg from "@/assets/procedure-bg.jpg";
 import ScrollReveal from "@/components/ScrollReveal";
+import toothShield from "@/assets/tooth-shield.png";
 
 const ProcedureSection = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-24 bg-card" ref={ref}>
+    <section className="py-24 bg-card relative overflow-hidden" ref={ref}>
+      {/* Floating shield image */}
+      <motion.img
+        src={toothShield}
+        alt=""
+        className="absolute -top-4 -left-8 w-28 md:w-36 opacity-10 pointer-events-none"
+        animate={{ y: [0, -10, 0], rotate: [-5, 5, -5] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+      />
+
       <div className="container mx-auto px-4">
         <div className="relative rounded-3xl overflow-hidden min-h-[450px]">
           <img

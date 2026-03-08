@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import useCountUp from "@/hooks/useCountUp";
 import toothSplash from "@/assets/tooth-splash.png";
 import heroTooth from "@/assets/hero-tooth.png";
+import dentalMirror from "@/assets/dental-mirror.png";
+import toothbrush from "@/assets/toothbrush.png";
 import { Link } from "react-router-dom";
 
 const statsData = [
@@ -56,6 +58,22 @@ const HeroSection = () => {
         className="absolute bottom-20 right-0 w-[400px] h-[400px] rounded-full bg-blue-light translate-x-1/3 opacity-40"
         animate={{ scale: [1, 1.08, 1] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+      />
+
+      {/* Floating decorative dental images */}
+      <motion.img
+        src={dentalMirror}
+        alt=""
+        className="absolute top-32 right-[8%] w-20 md:w-28 opacity-15 pointer-events-none hidden lg:block"
+        animate={{ y: [0, -15, 0], rotate: [0, 5, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.img
+        src={toothbrush}
+        alt=""
+        className="absolute bottom-[35%] left-[3%] w-16 md:w-24 opacity-10 pointer-events-none hidden lg:block"
+        animate={{ y: [0, 10, 0], rotate: [0, -8, 0] }}
+        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
       />
 
       {/* Upper hero */}
@@ -130,11 +148,19 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Lower banner – inspired by reference */}
-      <div className="relative z-10 bg-primary mt-8">
+      {/* Lower banner */}
+      <div className="relative z-10 bg-primary mt-8 overflow-hidden">
+        {/* Floating images in banner */}
+        <motion.img
+          src={toothbrush}
+          alt=""
+          className="absolute -top-6 -right-4 w-32 md:w-44 opacity-10 pointer-events-none rotate-45"
+          animate={{ y: [0, -8, 0] }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+        />
+
         <div className="container mx-auto px-4 py-16 md:py-20">
           <div className="grid lg:grid-cols-[1fr_auto_auto] gap-8 items-center">
-            {/* Text + CTA */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -157,7 +183,6 @@ const HeroSection = () => {
               </Button>
             </motion.div>
 
-            {/* Center image */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -166,13 +191,8 @@ const HeroSection = () => {
               className="relative flex justify-center"
             >
               <div className="w-[260px] h-[260px] md:w-[320px] md:h-[320px] rounded-full overflow-hidden border-4 border-primary-foreground/20 shadow-2xl">
-                <img
-                  src={heroTooth}
-                  alt="Advanced dental care"
-                  className="w-full h-full object-cover"
-                />
+                <img src={heroTooth} alt="Advanced dental care" className="w-full h-full object-cover" />
               </div>
-              {/* Decorative ring */}
               <motion.div
                 className="absolute inset-0 w-[260px] h-[260px] md:w-[320px] md:h-[320px] rounded-full border-2 border-dashed border-accent/40 mx-auto"
                 animate={{ rotate: 360 }}
@@ -180,7 +200,6 @@ const HeroSection = () => {
               />
             </motion.div>
 
-            {/* Right side icons */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
