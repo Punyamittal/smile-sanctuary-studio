@@ -6,17 +6,17 @@ import ScrollReveal from "@/components/ScrollReveal";
 const testimonials = [
   {
     name: "Emily Johnson",
-    text: "The best dental experience I've ever had. The team was incredibly gentle and professional. My smile has never looked better!",
+    text: "Dr. Mitchell is incredible. She made me feel so relaxed during my root canal — I barely felt a thing. My smile has never looked better!",
     rating: 5,
   },
   {
     name: "Michael Chen",
-    text: "I was terrified of dentists until I came here. The staff made me feel so comfortable and explained every step. Highly recommend!",
+    text: "I've been terrified of dentists my whole life, but Dr. Mitchell changed that completely. She's patient, kind, and truly skilled. Highly recommend!",
     rating: 5,
   },
   {
     name: "Sarah Williams",
-    text: "Outstanding service from start to finish. The whitening treatment exceeded my expectations. I can't stop smiling!",
+    text: "The whitening results were amazing! Dr. Mitchell took the time to explain everything and made sure I was comfortable throughout. Absolutely love my new smile!",
     rating: 5,
   },
 ];
@@ -29,8 +29,8 @@ const TestimonialsSection = () => {
     <section id="testimonials" className="py-24 bg-card" ref={ref}>
       <div className="container mx-auto px-4">
         <ScrollReveal className="text-center mb-16">
-          <p className="text-sm font-medium text-accent tracking-widest uppercase mb-4">Testimonials</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground">What Our Patients Say</h2>
+          <p className="text-sm font-medium text-accent tracking-widest uppercase mb-4">Patient Reviews</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground">What My Patients Say</h2>
         </ScrollReveal>
 
         <div className="grid md:grid-cols-3 gap-8">

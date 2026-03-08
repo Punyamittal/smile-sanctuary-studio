@@ -31,7 +31,6 @@ const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.4 }}
         >
-          {/* Animated background circles */}
           <motion.div
             className="absolute w-[800px] h-[800px] rounded-full border border-primary-foreground/10"
             animate={{ scale: [1, 1.3, 1], rotate: 360 }}
@@ -43,20 +42,13 @@ const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
             transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
           />
 
-          {/* Tooth icon mask */}
           <motion.div
             initial={{ scale: 0, rotate: -20 }}
             animate={{ scale: 1, rotate: 0 }}
             transition={{ type: "spring", stiffness: 200, damping: 15 }}
             className="relative mb-10"
           >
-            <svg
-              width="80"
-              height="96"
-              viewBox="0 0 80 96"
-              fill="none"
-              className="text-primary-foreground"
-            >
+            <svg width="80" height="96" viewBox="0 0 80 96" fill="none" className="text-primary-foreground">
               <motion.path
                 d="M40 0C26 0 16 6 10 16C4 26 0 38 4 50C8 62 16 70 22 80C28 90 32 96 40 96C48 96 52 90 58 80C64 70 72 62 76 50C80 38 76 26 70 16C64 6 54 0 40 0Z"
                 fill="currentColor"
@@ -65,30 +57,19 @@ const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
                 transition={{ duration: 1.5, ease: "easeInOut" }}
               />
             </svg>
-            <motion.div
-              className="absolute inset-0 flex items-center justify-center"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.8 }}
-            >
-              <span className="text-primary font-display font-bold text-2xl">D</span>
-            </motion.div>
           </motion.div>
 
-          {/* Brand name reveal */}
           <div className="overflow-hidden mb-8">
             <motion.h1
-              className="text-3xl md:text-4xl font-display font-bold text-primary-foreground uppercase tracking-[0.3em]"
+              className="text-2xl md:text-3xl font-display font-bold text-primary-foreground tracking-wider"
               initial={{ y: 60 }}
               animate={{ y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              Denta{" "}
-              <span className="text-accent">Care</span>
+              Dr. Sarah <span className="text-accent">Mitchell</span>
             </motion.h1>
           </div>
 
-          {/* Progress bar */}
           <div className="w-48 h-[2px] bg-primary-foreground/20 rounded-full overflow-hidden mb-4">
             <motion.div
               className="h-full bg-accent rounded-full"
@@ -107,7 +88,6 @@ const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
           </motion.p>
         </motion.div>
       ) : (
-        /* Mask reveal – two panels slide apart */
         <motion.div key="reveal" className="fixed inset-0 z-[100] pointer-events-none">
           <motion.div
             className="absolute top-0 left-0 w-1/2 h-full bg-primary"
