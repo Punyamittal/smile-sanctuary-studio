@@ -39,6 +39,7 @@ const Contact = () => {
         subtitle="Get In Touch"
         title="Schedule Your Visit Today"
         description="Ready for a healthier, brighter smile? Reach out and I'll personally get back to you within 24 hours."
+        variant="contact"
       />
 
       {/* Contact info cards */}
