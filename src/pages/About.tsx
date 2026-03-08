@@ -4,7 +4,7 @@ import useCountUp from "@/hooks/useCountUp";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Shield, Heart, Award, GraduationCap, Calendar, Users, CheckCircle2, Lightbulb, Smile, Stethoscope } from "lucide-react";
-import doc2 from "@/assets/doctor2.jpg";
+import doc2 from "@/assets/dr-gunjan.jpg";
 import floatingTooth from "@/assets/floating-tooth.png";
 import toothShield from "@/assets/tooth-shield.png";
 import toothbrush from "@/assets/toothbrush.png";
