@@ -1,10 +1,12 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, lazy, Suspense } from "react";
 import {
-  Sparkles, Sun, Wrench, Stethoscope, Baby, Scissors,
+  Sparkles, Sun, Wrench, Stethoscope, Baby, Scissors, ArrowRight,
 } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 import R3FErrorBoundary from "@/components/R3FErrorBoundary";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const FloatingDentalElements = lazy(() => import("@/components/FloatingDentalElements"));
 
@@ -22,7 +24,7 @@ const ServicesSection = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="services" className="py-24 bg-background relative" ref={ref}>
+    <section className="py-24 bg-background relative" ref={ref}>
       <R3FErrorBoundary>
         <Suspense fallback={null}>
           <FloatingDentalElements className="absolute inset-0 opacity-20 pointer-events-none" />
@@ -36,7 +38,7 @@ const ServicesSection = () => {
             Comprehensive Dental Care
           </h2>
           <p className="text-muted-foreground mt-4 max-w-lg mx-auto">
-            From routine cleanings to advanced cosmetic procedures, I offer a full range of dental services tailored to your needs.
+            From routine cleanings to advanced cosmetic procedures, I offer a full range of dental services.
           </p>
         </ScrollReveal>
 
@@ -62,6 +64,15 @@ const ServicesSection = () => {
             </motion.div>
           ))}
         </div>
+
+        <ScrollReveal className="text-center mt-12">
+          <Button asChild variant="outline" className="rounded-full border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 group">
+            <Link to="/services">
+              View All Services
+              <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </Button>
+        </ScrollReveal>
       </div>
     </section>
   );
