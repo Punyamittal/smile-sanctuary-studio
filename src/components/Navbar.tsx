@@ -1,15 +1,14 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Doctors", href: "#doctors" },
-  { label: "Testimonials", href: "#testimonials" },
-  { label: "Contact", href: "#contact" },
+  { label: "Our Treatments", href: "#services" },
+  { label: "Our Clinics", href: "#doctors" },
+  { label: "Contact Us", href: "#contact" },
 ];
 
 const Navbar = () => {
@@ -25,15 +24,14 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-background/95 backdrop-blur-md shadow-sm" : "bg-transparent"
+        scrolled ? "bg-card/95 backdrop-blur-md shadow-sm" : "bg-transparent"
       }`}
     >
       <div className="container mx-auto flex items-center justify-between py-4 px-4">
         <a href="#home" className="flex items-center gap-2">
-          <div className="w-9 h-9 rounded-full bg-primary flex items-center justify-center">
-            <span className="text-primary-foreground font-display font-bold text-lg">D</span>
-          </div>
-          <span className="font-display text-xl font-bold text-foreground">Dentica</span>
+          <span className="font-display text-xl font-bold uppercase tracking-wider text-primary">
+            Denta <span className="text-accent">Care</span>
+          </span>
         </a>
 
         {/* Desktop */}
@@ -42,22 +40,16 @@ const Navbar = () => {
             <a
               key={l.href}
               href={l.href}
-              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors uppercase tracking-wide"
             >
               {l.label}
             </a>
           ))}
         </div>
 
-        <div className="hidden lg:flex items-center gap-3">
-          <a href="tel:+1234567890" className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Phone className="w-4 h-4 text-primary" />
-            (123) 456-7890
-          </a>
-          <Button asChild>
-            <a href="#contact">Book Appointment</a>
-          </Button>
-        </div>
+        <Button asChild variant="accent" className="hidden lg:inline-flex rounded-full px-6">
+          <a href="#contact">Book Appointment</a>
+        </Button>
 
         {/* Mobile toggle */}
         <button className="lg:hidden text-foreground" onClick={() => setMobileOpen(!mobileOpen)}>
@@ -72,7 +64,7 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-background border-t border-border overflow-hidden"
+            className="lg:hidden bg-card border-t border-border overflow-hidden"
           >
             <div className="container mx-auto py-4 px-4 flex flex-col gap-4">
               {navLinks.map((l) => (
@@ -80,12 +72,12 @@ const Navbar = () => {
                   key={l.href}
                   href={l.href}
                   onClick={() => setMobileOpen(false)}
-                  className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+                  className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors uppercase"
                 >
                   {l.label}
                 </a>
               ))}
-              <Button asChild className="w-full">
+              <Button asChild variant="accent" className="w-full rounded-full">
                 <a href="#contact" onClick={() => setMobileOpen(false)}>Book Appointment</a>
               </Button>
             </div>
