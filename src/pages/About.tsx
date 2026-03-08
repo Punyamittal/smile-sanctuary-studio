@@ -121,7 +121,7 @@ const About = () => {
                   transition={{ duration: 0.4 }}
                   className="w-full max-w-md mx-auto aspect-[3/4] rounded-3xl overflow-hidden shadow-xl"
                 >
-                  <img src={doc2} alt="Dr. Sarah Mitchell" className="w-full h-full object-cover" loading="lazy" />
+                  <img src={doc2} alt="Dr. Gunjan Thakur" className="w-full h-full object-cover" loading="lazy" />
                 </motion.div>
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
