@@ -7,7 +7,7 @@ import {
   ArrowRight, Sparkles, Shield, Heart, Award, GraduationCap, Calendar,
   Users, CheckCircle2, Lightbulb, Smile, Stethoscope, Sun, Wrench,
   Baby, Scissors, HelpCircle, Star, Quote, TrendingUp, Send,
-  MapPin, Phone, Mail, Clock, CalendarDays,
+  MapPin, Phone, Mail, Clock, CalendarDays, ChevronLeft, ChevronRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
