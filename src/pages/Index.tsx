@@ -157,7 +157,7 @@ const StatCard = ({ icon: Icon, label, value, suffix, delay }: typeof aboutStats
   );
 };
 
-const TestimonialsCarousel = ({ testimonials, inView }: { testimonials: typeof import("./Index")["default"] extends any ? { name: string; role: string; text: string; rating: number }[] : never; inView: boolean }) => {
+const TestimonialsCarousel = ({ testimonials, inView }: { testimonials: { name: string; role: string; text: string; rating: number }[]; inView: boolean }) => {
   const [current, setCurrent] = useState(0);
   const [autoplay, setAutoplay] = useState(true);
   const total = testimonials.length;
