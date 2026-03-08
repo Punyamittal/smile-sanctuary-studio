@@ -157,7 +157,92 @@ const StatCard = ({ icon: Icon, label, value, suffix, delay }: typeof aboutStats
   );
 };
 
-// ─── MAIN PAGE ───────────────────────────────────────────────────────────────
+const TestimonialsCarousel = ({ testimonials, inView }: { testimonials: typeof import("./Index")["default"] extends any ? { name: string; role: string; text: string; rating: number }[] : never; inView: boolean }) => {
+  const [current, setCurrent] = useState(0);
+  const [autoplay, setAutoplay] = useState(true);
+  const total = testimonials.length;
+  const visibleCount = 3;
+
+  const next = useCallback(() => setCurrent((c) => (c + 1) % total), [total]);
+  const prev = useCallback(() => setCurrent((c) => (c - 1 + total) % total), [total]);
+
+  useEffect(() => {
+    if (!autoplay) return;
+    const id = setInterval(next, 4000);
+    return () => clearInterval(id);
+  }, [autoplay, next]);
+
+  const getVisibleIndices = () => {
+    const indices = [];
+    for (let i = 0; i < visibleCount; i++) {
+      indices.push((current + i) % total);
+    }
+    return indices;
+  };
+
+  const visible = getVisibleIndices();
+
+  return (
+    <div
+      className="relative"
+      onMouseEnter={() => setAutoplay(false)}
+      onMouseLeave={() => setAutoplay(true)}
+    >
+      <div className="grid md:grid-cols-3 gap-6">
+        {visible.map((idx, pos) => {
+          const t = testimonials[idx];
+          return (
+            <motion.div
+              key={`${idx}-${current}`}
+              initial={{ opacity: 0, x: 40, scale: 0.95 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              exit={{ opacity: 0, x: -40, scale: 0.95 }}
+              transition={{ duration: 0.5, delay: pos * 0.08, ease: [0.22, 1, 0.36, 1] }}
+              whileHover={{ scale: 1.03, y: -6 }}
+              className="bg-card rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all cursor-pointer border border-border/50"
+            >
+              <Quote className="w-8 h-8 text-blue-light mb-4" />
+              <p className="text-muted-foreground leading-relaxed mb-6">{t.text}</p>
+              <div className="flex items-center gap-1 mb-3">
+                {[...Array(t.rating)].map((_, j) => (
+                  <Star key={j} className="w-4 h-4 fill-accent text-accent" />
+                ))}
+              </div>
+              <p className="font-semibold text-foreground">{t.name}</p>
+              <p className="text-xs text-muted-foreground">{t.role}</p>
+            </motion.div>
+          );
+        })}
+      </div>
+
+      {/* Controls */}
+      <div className="flex items-center justify-center gap-4 mt-10">
+        <Button variant="outline" size="icon" className="rounded-full border-border hover:bg-primary hover:text-primary-foreground" onClick={prev}>
+          <ChevronLeft className="w-5 h-5" />
+        </Button>
+
+        <div className="flex items-center gap-2">
+          {Array.from({ length: Math.ceil(total / visibleCount) }).map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent(i * visibleCount)}
+              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                Math.floor(current / visibleCount) === i
+                  ? "bg-accent w-6"
+                  : "bg-border hover:bg-muted-foreground"
+              }`}
+            />
+          ))}
+        </div>
+
+        <Button variant="outline" size="icon" className="rounded-full border-border hover:bg-primary hover:text-primary-foreground" onClick={next}>
+          <ChevronRight className="w-5 h-5" />
+        </Button>
+      </div>
+    </div>
+  );
+};
+
 
 const Index = () => {
   const timelineRef = useRef(null);
