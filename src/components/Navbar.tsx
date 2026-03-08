@@ -6,9 +6,9 @@ import { motion, AnimatePresence } from "framer-motion";
 const navLinks = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
-  { label: "Our Treatments", href: "#services" },
-  { label: "Our Clinics", href: "#doctors" },
-  { label: "Contact Us", href: "#contact" },
+  { label: "Services", href: "#services" },
+  { label: "Testimonials", href: "#testimonials" },
+  { label: "Contact", href: "#contact" },
 ];
 
 const Navbar = () => {
@@ -29,12 +29,11 @@ const Navbar = () => {
     >
       <div className="container mx-auto flex items-center justify-between py-4 px-4">
         <a href="#home" className="flex items-center gap-2">
-          <span className="font-display text-xl font-bold uppercase tracking-wider text-primary">
-            Denta <span className="text-accent">Care</span>
+          <span className="font-display text-xl font-bold tracking-wider text-primary">
+            Dr. Sarah <span className="text-accent">Mitchell</span>
           </span>
         </a>
 
-        {/* Desktop */}
         <div className="hidden lg:flex items-center gap-8">
           {navLinks.map((l) => (
             <a
@@ -51,13 +50,11 @@ const Navbar = () => {
           <a href="#contact">Book Appointment</a>
         </Button>
 
-        {/* Mobile toggle */}
         <button className="lg:hidden text-foreground" onClick={() => setMobileOpen(!mobileOpen)}>
           {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div

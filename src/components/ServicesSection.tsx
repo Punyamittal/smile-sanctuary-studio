@@ -1,17 +1,20 @@
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, lazy, Suspense } from "react";
 import {
   Sparkles, Sun, Wrench, Stethoscope, Baby, Scissors,
 } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
+import R3FErrorBoundary from "@/components/R3FErrorBoundary";
+
+const FloatingDentalElements = lazy(() => import("@/components/FloatingDentalElements"));
 
 const services = [
-  { icon: Sparkles, title: "Teeth Cleaning", desc: "Professional cleaning to remove plaque and tartar for a healthier smile." },
-  { icon: Sun, title: "Teeth Whitening", desc: "Brighten your smile with our advanced whitening treatments." },
-  { icon: Wrench, title: "Dental Implants", desc: "Permanent tooth replacement that looks and feels natural." },
-  { icon: Stethoscope, title: "Root Canal", desc: "Pain-free root canal therapy to save and restore damaged teeth." },
-  { icon: Baby, title: "Pediatric Dentistry", desc: "Gentle dental care designed specifically for children." },
-  { icon: Scissors, title: "Oral Surgery", desc: "Expert surgical procedures for complex dental conditions." },
+  { icon: Sparkles, title: "Teeth Cleaning", desc: "Thorough professional cleaning to keep your teeth and gums healthy." },
+  { icon: Sun, title: "Teeth Whitening", desc: "Professional whitening for a brighter, more confident smile." },
+  { icon: Wrench, title: "Dental Implants", desc: "Permanent, natural-looking tooth replacement solutions." },
+  { icon: Stethoscope, title: "Root Canal", desc: "Comfortable, pain-free root canal therapy to save your teeth." },
+  { icon: Baby, title: "Pediatric Dentistry", desc: "Gentle, friendly dental care for your little ones." },
+  { icon: Scissors, title: "Oral Surgery", desc: "Expert surgical procedures with a focus on patient comfort." },
 ];
 
 const ServicesSection = () => {
@@ -19,13 +22,22 @@ const ServicesSection = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="services" className="py-24 bg-background" ref={ref}>
-      <div className="container mx-auto px-4">
+    <section id="services" className="py-24 bg-background relative" ref={ref}>
+      <R3FErrorBoundary>
+        <Suspense fallback={null}>
+          <FloatingDentalElements className="absolute inset-0 opacity-20 pointer-events-none" />
+        </Suspense>
+      </R3FErrorBoundary>
+
+      <div className="container mx-auto px-4 relative z-10">
         <ScrollReveal className="text-center mb-16">
-          <p className="text-sm font-medium text-accent tracking-widest uppercase mb-4">Our Services</p>
+          <p className="text-sm font-medium text-accent tracking-widest uppercase mb-4">My Services</p>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-            Enjoy Specialized Dental Services
+            Comprehensive Dental Care
           </h2>
+          <p className="text-muted-foreground mt-4 max-w-lg mx-auto">
+            From routine cleanings to advanced cosmetic procedures, I offer a full range of dental services tailored to your needs.
+          </p>
         </ScrollReveal>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
