@@ -281,7 +281,7 @@ const Index = () => {
             <ScrollReveal direction="left">
               <div className="relative">
                 <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.4 }} className="w-full max-w-md mx-auto aspect-[3/4] rounded-3xl overflow-hidden shadow-xl">
-                  <img src={doc2} alt="Dr. Sarah Mitchell" className="w-full h-full object-cover" loading="lazy" />
+                  <img src={doc2} alt="Dr. Gunjan Thakur" className="w-full h-full object-cover" loading="lazy" />
                 </motion.div>
                 <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="absolute -bottom-4 -right-4 bg-accent text-accent-foreground rounded-2xl px-6 py-3 shadow-lg">
                   <p className="font-bold text-lg">15+ Years</p>
