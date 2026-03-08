@@ -7,6 +7,8 @@ import ScrollReveal from "@/components/ScrollReveal";
 import { ArrowRight, Sparkles, Shield, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import floatingTooth from "@/assets/floating-tooth.png";
+import sparkleTooth from "@/assets/sparkle-tooth.png";
 
 const quickFacts = [
   { icon: Sparkles, title: "Modern Technology", desc: "Digital X-rays, laser treatments, and 3D imaging for precise care." },
@@ -19,8 +21,15 @@ const Index = () => (
     <HeroSection />
 
     {/* Quick facts band */}
-    <section className="py-16 bg-card border-y border-border">
-      <div className="container mx-auto px-4 grid md:grid-cols-3 gap-8">
+    <section className="py-16 bg-card border-y border-border relative overflow-hidden">
+      <motion.img
+        src={floatingTooth}
+        alt=""
+        className="absolute -bottom-6 right-[8%] w-20 opacity-[0.07] pointer-events-none"
+        animate={{ y: [0, -8, 0] }}
+        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <div className="container mx-auto px-4 grid md:grid-cols-3 gap-8 relative z-10">
         {quickFacts.map((f, i) => (
           <ScrollReveal key={f.title} delay={i * 0.12}>
             <motion.div
@@ -52,6 +61,22 @@ const Index = () => (
         transition={{ duration: 20, repeat: Infinity, repeatType: "reverse" }}
         style={{ backgroundImage: "radial-gradient(circle, hsl(var(--accent)) 1px, transparent 1px)", backgroundSize: "30px 30px" }}
       />
+      {/* Floating tooth in CTA */}
+      <motion.img
+        src={sparkleTooth}
+        alt=""
+        className="absolute top-6 left-[6%] w-20 md:w-28 opacity-15 pointer-events-none"
+        animate={{ y: [0, -12, 0], rotate: [-5, 5, -5] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.img
+        src={floatingTooth}
+        alt=""
+        className="absolute bottom-4 right-[8%] w-16 md:w-24 opacity-10 pointer-events-none"
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+      />
+
       <div className="container mx-auto px-4 text-center relative z-10">
         <ScrollReveal>
           <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-4">

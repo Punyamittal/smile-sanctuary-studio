@@ -9,6 +9,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { CalendarDays, Send, MapPin, Phone, Mail, Clock } from "lucide-react";
 import { toast } from "sonner";
+import toothShield from "@/assets/tooth-shield.png";
+import floatingTooth from "@/assets/floating-tooth.png";
 
 const contactInfo = [
   { icon: MapPin, title: "Location", lines: ["456 Smile Street, Suite 200", "New York, NY 10001"] },
@@ -62,8 +64,24 @@ const Contact = () => {
       </section>
 
       {/* Form section */}
-      <section className="py-24 bg-background" ref={ref}>
-        <div className="container mx-auto px-4">
+      <section className="py-24 bg-background relative overflow-hidden" ref={ref}>
+        {/* Floating images */}
+        <motion.img
+          src={toothShield}
+          alt=""
+          className="absolute top-16 right-[4%] w-24 md:w-32 opacity-[0.06] pointer-events-none"
+          animate={{ y: [0, -14, 0], rotate: [0, 5, 0] }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.img
+          src={floatingTooth}
+          alt=""
+          className="absolute bottom-12 left-[3%] w-20 md:w-28 opacity-[0.05] pointer-events-none"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
+
+        <div className="container mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             <ScrollReveal direction="left">
               <p className="text-sm font-medium text-accent tracking-widest uppercase mb-4">Appointment</p>
@@ -83,7 +101,6 @@ const Contact = () => {
                   </div>
                 </div>
 
-                {/* Map placeholder */}
                 <div className="rounded-2xl overflow-hidden border border-border/50 h-64 bg-muted flex items-center justify-center">
                   <div className="text-center">
                     <MapPin className="w-8 h-8 text-muted-foreground mx-auto mb-2" />
