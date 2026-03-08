@@ -53,7 +53,7 @@ const Navbar = () => {
       <div className="container mx-auto flex items-center justify-between py-4 px-4">
         <button onClick={() => scrollTo("#home")} className="flex items-center gap-2">
           <span className="font-display text-xl font-bold tracking-wider text-primary">
-            Dr. Sarah <span className="text-accent">Mitchell</span>
+            Amica <span className="text-accent">Dental Studio</span>
           </span>
         </button>
 

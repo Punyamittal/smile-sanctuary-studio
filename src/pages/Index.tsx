@@ -291,7 +291,7 @@ const Index = () => {
             </ScrollReveal>
             <ScrollReveal direction="right">
               <p className="text-sm font-medium text-accent tracking-widest uppercase mb-4">My Story</p>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">Hi, I'm Dr. Sarah Mitchell</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">Hi, I'm Dr. Gunjan Thakur</h2>
               <p className="text-muted-foreground text-lg leading-relaxed mb-4">With over 15 years of experience in general and cosmetic dentistry, I've dedicated my career to creating beautiful, healthy smiles. My practice is built on a foundation of trust, comfort, and cutting-edge dental care.</p>
               <p className="text-muted-foreground leading-relaxed mb-4">I graduated from Columbia University College of Dental Medicine and have since completed advanced training in cosmetic procedures, implantology, and pediatric dentistry. Every patient who walks through my door is treated like family.</p>
               <p className="text-muted-foreground leading-relaxed">I stay at the forefront of dental science by attending international conferences and investing in the latest technology — from digital 3D scanners to laser treatment systems.</p>

@@ -118,7 +118,7 @@ const HeroSection = () => {
           </h1>
 
           <motion.div initial={{ opacity: 0, y: 30, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 0.7, delay: 0.8, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }} className="bg-card/80 backdrop-blur-md rounded-2xl p-5 max-w-sm shadow-lg border border-border/50">
-            <p className="text-sm text-muted-foreground leading-relaxed">I'm <strong className="text-foreground">Dr. Sarah Mitchell</strong>, a dedicated dentist committed to giving you the healthiest, most beautiful smile using the latest technology and a gentle touch.</p>
+            <p className="text-sm text-muted-foreground leading-relaxed">I'm <strong className="text-foreground">Dr. Gunjan Thakur</strong>, a dedicated dentist committed to giving you the healthiest, most beautiful smile using the latest technology and a gentle touch.</p>
             <motion.div className="flex items-center gap-2 mt-3 text-xs text-muted-foreground" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.1 }}>
               <Clock className="w-4 h-4 text-accent" /><span>Clinic Hours: <strong className="text-foreground">9:00 AM – 6:00 PM</strong></span>
             </motion.div>
