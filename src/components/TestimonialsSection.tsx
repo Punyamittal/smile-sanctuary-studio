@@ -25,7 +25,7 @@ const TestimonialsSection = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="testimonials" className="py-24 bg-secondary/30" ref={ref}>
+    <section id="testimonials" className="py-24 bg-card" ref={ref}>
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -33,7 +33,7 @@ const TestimonialsSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="text-sm font-medium text-primary tracking-widest uppercase mb-4">Testimonials</p>
+          <p className="text-sm font-medium text-accent tracking-widest uppercase mb-4">Testimonials</p>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground">What Our Patients Say</h2>
         </motion.div>
 
@@ -44,13 +44,13 @@ const TestimonialsSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.15 * i }}
-              className="bg-card rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow relative"
+              className="bg-background rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow"
             >
-              <Quote className="w-8 h-8 text-accent mb-4" />
+              <Quote className="w-8 h-8 text-blue-light mb-4" />
               <p className="text-muted-foreground leading-relaxed mb-6">{t.text}</p>
               <div className="flex items-center gap-1 mb-3">
                 {[...Array(t.rating)].map((_, j) => (
-                  <Star key={j} className="w-4 h-4 fill-primary text-primary" />
+                  <Star key={j} className="w-4 h-4 fill-accent text-accent" />
                 ))}
               </div>
               <p className="font-semibold text-foreground">{t.name}</p>
