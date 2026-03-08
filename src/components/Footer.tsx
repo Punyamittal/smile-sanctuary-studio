@@ -1,15 +1,22 @@
 import { MapPin, Phone, Mail, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import { Link } from "react-router-dom";
 
-const quickLinks = ["Home", "About", "Services", "Testimonials", "Contact"];
+const quickLinks = [
+  { label: "Home", to: "/" },
+  { label: "About", to: "/about" },
+  { label: "Services", to: "/services" },
+  { label: "Testimonials", to: "/testimonials" },
+  { label: "Contact", to: "/contact" },
+];
 
 const Footer = () => (
   <footer className="bg-primary text-primary-foreground pt-16 pb-8">
     <div className="container mx-auto px-4">
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
         <div>
-          <span className="font-display text-xl font-bold tracking-wider mb-4 block">
+          <Link to="/" className="font-display text-xl font-bold tracking-wider mb-4 block">
             Dr. Sarah <span className="text-accent">Mitchell</span>
-          </span>
+          </Link>
           <p className="text-primary-foreground/60 text-sm leading-relaxed">
             Providing personalized dental care with a gentle touch. Your smile is my passion.
           </p>
@@ -19,10 +26,10 @@ const Footer = () => (
           <h4 className="font-semibold mb-4">Quick Links</h4>
           <ul className="space-y-2">
             {quickLinks.map((l) => (
-              <li key={l}>
-                <a href={`#${l.toLowerCase()}`} className="text-sm text-primary-foreground/60 hover:text-accent transition-colors">
-                  {l}
-                </a>
+              <li key={l.to}>
+                <Link to={l.to} className="text-sm text-primary-foreground/60 hover:text-accent transition-colors">
+                  {l.label}
+                </Link>
               </li>
             ))}
           </ul>
