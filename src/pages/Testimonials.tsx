@@ -2,9 +2,12 @@ import PageHeader from "@/components/PageHeader";
 import ScrollReveal from "@/components/ScrollReveal";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Star, Quote, ArrowRight } from "lucide-react";
+import { Star, Quote, ArrowRight, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { FunnelChart } from "@/components/ui/funnel-chart";
+import floatingTooth from "@/assets/floating-tooth.png";
+import sparkleTooth from "@/assets/sparkle-tooth.png";
 
 const testimonials = [
   { name: "Emily Johnson", role: "Cosmetic Patient", text: "Dr. Mitchell is incredible. She made me feel so relaxed during my root canal — I barely felt a thing. My smile has never looked better!", rating: 5 },
@@ -23,6 +26,21 @@ const overallStats = [
   { label: "Total Reviews", value: "500+" },
   { label: "Would Recommend", value: "99%" },
   { label: "Return Patients", value: "95%" },
+];
+
+const patientJourneyData = [
+  { label: "Website Visits", value: 12400, displayValue: "12.4k", color: "hsl(var(--primary))" },
+  { label: "Consultations", value: 6800, displayValue: "6.8k", color: "hsl(210 80% 55%)" },
+  { label: "Treatments", value: 3200, displayValue: "3.2k", color: "hsl(var(--accent))" },
+  { label: "Follow-ups", value: 1500, displayValue: "1.5k", color: "hsl(25 95% 55%)" },
+  { label: "Loyal Patients", value: 620, displayValue: "620", color: "hsl(150 60% 45%)" },
+];
+
+const satisfactionData = [
+  { label: "Visited", value: 5000, displayValue: "5,000", color: "hsl(var(--primary))" },
+  { label: "Satisfied", value: 4850, displayValue: "4,850", color: "hsl(210 75% 50%)" },
+  { label: "5-Star Review", value: 4200, displayValue: "4,200", color: "hsl(var(--accent))" },
+  { label: "Referred Others", value: 3100, displayValue: "3,100", color: "hsl(25 90% 50%)" },
 ];
 
 const Testimonials = () => {
@@ -51,9 +69,116 @@ const Testimonials = () => {
         </div>
       </section>
 
+      {/* Patient Journey Funnel */}
+      <section className="py-24 bg-background relative overflow-hidden">
+        <motion.img
+          src={floatingTooth}
+          alt=""
+          className="absolute top-12 right-[4%] w-24 md:w-32 opacity-[0.06] pointer-events-none"
+          animate={{ y: [0, -14, 0] }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+        />
+
+        <div className="container mx-auto px-4 relative z-10">
+          <ScrollReveal className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-light text-primary text-sm font-medium mb-4">
+              <TrendingUp className="w-4 h-4" />
+              Patient Analytics
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+              The Patient Journey
+            </h2>
+            <p className="text-muted-foreground mt-4 max-w-xl mx-auto">
+              From the first website visit to becoming a loyal patient — here's how our practice converts care into trust.
+            </p>
+          </ScrollReveal>
+
+          <ScrollReveal>
+            <div className="bg-card rounded-3xl border border-border/50 p-8 md:p-12 shadow-sm">
+              <div className="h-[220px] md:h-[280px]">
+                <FunnelChart
+                  data={patientJourneyData}
+                  orientation="horizontal"
+                  layers={4}
+                  edges="curved"
+                  gap={6}
+                  showPercentage
+                  showValues
+                  showLabels
+                  staggerDelay={0.15}
+                  className="w-full h-full"
+                />
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Satisfaction Funnel (Vertical) */}
+      <section className="py-24 bg-card relative overflow-hidden">
+        <motion.img
+          src={sparkleTooth}
+          alt=""
+          className="absolute bottom-10 left-[3%] w-20 md:w-28 opacity-[0.05] pointer-events-none"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <ScrollReveal direction="left">
+              <p className="text-sm font-medium text-accent tracking-widest uppercase mb-4">Satisfaction Metrics</p>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
+                Patient Satisfaction Funnel
+              </h2>
+              <p className="text-muted-foreground text-lg leading-relaxed mb-6">
+                We don't just treat teeth — we build lasting relationships. Our patient satisfaction data speaks for itself: the vast majority of our patients leave 5-star reviews and recommend us to friends and family.
+              </p>
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { label: "Satisfaction Rate", val: "97%" },
+                  { label: "5-Star Reviews", val: "84%" },
+                  { label: "Referral Rate", val: "62%" },
+                  { label: "Return Visits", val: "95%" },
+                ].map((item) => (
+                  <div key={item.label} className="bg-background rounded-xl p-4 border border-border/50">
+                    <p className="text-2xl font-bold text-accent">{item.val}</p>
+                    <p className="text-xs text-muted-foreground mt-1">{item.label}</p>
+                  </div>
+                ))}
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal direction="right">
+              <div className="bg-background rounded-3xl border border-border/50 p-8 shadow-sm">
+                <div className="h-[400px]">
+                  <FunnelChart
+                    data={satisfactionData}
+                    orientation="vertical"
+                    layers={3}
+                    edges="curved"
+                    gap={5}
+                    showPercentage
+                    showValues
+                    showLabels
+                    staggerDelay={0.18}
+                    className="w-full h-full"
+                  />
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
       {/* Testimonials grid */}
       <section className="py-24 bg-background" ref={ref}>
         <div className="container mx-auto px-4">
+          <ScrollReveal className="text-center mb-16">
+            <p className="text-sm font-medium text-accent tracking-widest uppercase mb-4">Reviews</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground">What Our Patients Say</h2>
+          </ScrollReveal>
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {testimonials.map((t, i) => (
               <motion.div
