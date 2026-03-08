@@ -186,25 +186,6 @@ const Index = () => {
         <HeroSection />
       </div>
 
-      {/* Quick facts band */}
-      <section className="py-16 bg-card border-y border-border relative overflow-hidden">
-        <motion.img src={floatingTooth} alt="" className="absolute -bottom-6 right-[8%] w-20 opacity-[0.07] pointer-events-none" animate={{ y: [0, -8, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }} />
-        <div className="container mx-auto px-4 grid md:grid-cols-3 gap-8 relative z-10">
-          {quickFacts.map((f, i) => (
-            <ScrollReveal key={f.title} delay={i * 0.12}>
-              <motion.div whileHover={{ y: -4 }} className="flex gap-5 items-start">
-                <div className="w-14 h-14 rounded-2xl bg-blue-light flex items-center justify-center shrink-0">
-                  <f.icon className="w-6 h-6 text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-foreground mb-1">{f.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
-                </div>
-              </motion.div>
-            </ScrollReveal>
-          ))}
-        </div>
-      </section>
 
       {/* ═══════════ ABOUT ═══════════ */}
       <section id="about" className="py-24 bg-background relative overflow-hidden">
