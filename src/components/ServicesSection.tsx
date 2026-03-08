@@ -4,6 +4,7 @@ import {
   Sparkles, Sun, Wrench, Stethoscope, Baby, Scissors,
 } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
+import R3FErrorBoundary from "@/components/R3FErrorBoundary";
 
 const FloatingDentalElements = lazy(() => import("@/components/FloatingDentalElements"));
 
@@ -22,9 +23,11 @@ const ServicesSection = () => {
 
   return (
     <section id="services" className="py-24 bg-background relative" ref={ref}>
-      <Suspense fallback={null}>
-        <FloatingDentalElements className="absolute inset-0 opacity-20 pointer-events-none" />
-      </Suspense>
+      <R3FErrorBoundary>
+        <Suspense fallback={null}>
+          <FloatingDentalElements className="absolute inset-0 opacity-20 pointer-events-none" />
+        </Suspense>
+      </R3FErrorBoundary>
 
       <div className="container mx-auto px-4 relative z-10">
         <ScrollReveal className="text-center mb-16">

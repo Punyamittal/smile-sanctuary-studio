@@ -3,6 +3,8 @@ import { ArrowRight, Clock, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import useCountUp from "@/hooks/useCountUp";
 import { lazy, Suspense } from "react";
+import R3FErrorBoundary from "@/components/R3FErrorBoundary";
+import toothSplash from "@/assets/tooth-splash.png";
 
 const Tooth3D = lazy(() => import("@/components/Tooth3D"));
 
@@ -31,6 +33,16 @@ const StatItem = ({ value, suffix, label, delay }: { value: number; suffix: stri
     </motion.div>
   );
 };
+
+const ToothFallback = () => (
+  <motion.img
+    src={toothSplash}
+    alt="3D tooth"
+    className="w-[280px] md:w-[380px] lg:w-[420px] xl:w-[480px] drop-shadow-2xl"
+    animate={{ y: [0, -12, 0] }}
+    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+  />
+);
 
 const HeroSection = () => {
   const letterVariants = {
@@ -104,20 +116,18 @@ const HeroSection = () => {
           </motion.div>
         </div>
 
-        {/* Center – 3D Tooth (lazy loaded) */}
+        {/* Center – 3D Tooth with fallback */}
         <motion.div
           initial={{ opacity: 0, scale: 0.7 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.3, type: "spring", stiffness: 100 }}
           className="flex justify-center"
         >
-          <Suspense fallback={
-            <div className="w-[280px] h-[350px] md:w-[380px] md:h-[450px] lg:w-[420px] lg:h-[500px] flex items-center justify-center">
-              <div className="w-20 h-20 rounded-full border-4 border-blue-light border-t-primary animate-spin" />
-            </div>
-          }>
-            <Tooth3D className="w-[280px] h-[350px] md:w-[380px] md:h-[450px] lg:w-[420px] lg:h-[500px]" />
-          </Suspense>
+          <R3FErrorBoundary fallback={<ToothFallback />}>
+            <Suspense fallback={<ToothFallback />}>
+              <Tooth3D className="w-[280px] h-[350px] md:w-[380px] md:h-[450px] lg:w-[420px] lg:h-[500px]" />
+            </Suspense>
+          </R3FErrorBoundary>
         </motion.div>
 
         <div className="space-y-8 lg:pl-8">
