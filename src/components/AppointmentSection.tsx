@@ -22,7 +22,7 @@ const AppointmentSection = () => {
   };
 
   return (
-    <section id="contact" className="py-24" ref={ref}>
+    <section id="contact" className="py-24 bg-background" ref={ref}>
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <motion.div
@@ -30,15 +30,15 @@ const AppointmentSection = () => {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <p className="text-sm font-medium text-primary tracking-widest uppercase mb-4">Book Now</p>
+            <p className="text-sm font-medium text-accent tracking-widest uppercase mb-4">Book Now</p>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
               Schedule Your Appointment
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed mb-8">
               Take the first step towards a healthier, brighter smile. Fill out the form and our team will get back to you within 24 hours.
             </p>
-            <div className="flex items-center gap-4 p-4 bg-accent rounded-2xl">
-              <CalendarDays className="w-10 h-10 text-accent-foreground" />
+            <div className="flex items-center gap-4 p-4 bg-blue-light rounded-2xl">
+              <CalendarDays className="w-10 h-10 text-primary" />
               <div>
                 <p className="font-semibold text-foreground">Working Hours</p>
                 <p className="text-sm text-muted-foreground">Mon – Fri: 9:00 AM – 7:00 PM</p>
@@ -90,7 +90,7 @@ const AppointmentSection = () => {
                 </SelectContent>
               </Select>
             </div>
-            <Button type="submit" className="w-full rounded-full" size="lg" disabled={loading}>
+            <Button type="submit" variant="accent" className="w-full rounded-full" size="lg" disabled={loading}>
               {loading ? "Sending..." : (
                 <>Submit Request <Send className="ml-2 w-4 h-4" /></>
               )}
