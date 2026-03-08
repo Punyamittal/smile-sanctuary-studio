@@ -433,30 +433,14 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Testimonials Grid */}
+      {/* Testimonials Carousel */}
       <section className="py-24 bg-background" ref={testimonialsRef}>
         <div className="container mx-auto px-4">
           <ScrollReveal className="text-center mb-16">
             <p className="text-sm font-medium text-accent tracking-widest uppercase mb-4">Reviews</p>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">What Our Patients Say</h2>
           </ScrollReveal>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {testimonials.map((t, i) => (
-              <motion.div key={t.name} initial={{ opacity: 0, y: 40, rotateY: 10 }} animate={testimonialsInView ? { opacity: 1, y: 0, rotateY: 0 } : {}} transition={{ duration: 0.7, delay: 0.08 * i, ease: [0.22, 1, 0.36, 1] }} whileHover={{ scale: 1.03, y: -6 }} className="bg-card rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all cursor-pointer border border-border/50">
-                <Quote className="w-8 h-8 text-blue-light mb-4" />
-                <p className="text-muted-foreground leading-relaxed mb-6">{t.text}</p>
-                <div className="flex items-center gap-1 mb-3">
-                  {[...Array(t.rating)].map((_, j) => (
-                    <motion.div key={j} initial={{ scale: 0 }} animate={testimonialsInView ? { scale: 1 } : {}} transition={{ delay: 0.3 + i * 0.08 + j * 0.06, type: "spring" }}>
-                      <Star className="w-4 h-4 fill-accent text-accent" />
-                    </motion.div>
-                  ))}
-                </div>
-                <p className="font-semibold text-foreground">{t.name}</p>
-                <p className="text-xs text-muted-foreground">{t.role}</p>
-              </motion.div>
-            ))}
-          </div>
+          <TestimonialsCarousel testimonials={testimonials} inView={testimonialsInView} />
         </div>
       </section>
 
