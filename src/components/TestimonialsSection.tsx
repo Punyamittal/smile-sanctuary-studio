@@ -1,6 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Star, Quote } from "lucide-react";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const testimonials = [
   {
@@ -27,30 +28,33 @@ const TestimonialsSection = () => {
   return (
     <section id="testimonials" className="py-24 bg-card" ref={ref}>
       <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
+        <ScrollReveal className="text-center mb-16">
           <p className="text-sm font-medium text-accent tracking-widest uppercase mb-4">Testimonials</p>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground">What Our Patients Say</h2>
-        </motion.div>
+        </ScrollReveal>
 
         <div className="grid md:grid-cols-3 gap-8">
           {testimonials.map((t, i) => (
             <motion.div
               key={t.name}
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.15 * i }}
-              className="bg-background rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow"
+              initial={{ opacity: 0, y: 40, rotateY: 15 }}
+              animate={inView ? { opacity: 1, y: 0, rotateY: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.15 * i, ease: [0.22, 1, 0.36, 1] }}
+              whileHover={{ scale: 1.03, y: -4 }}
+              className="bg-background rounded-2xl p-8 shadow-sm hover:shadow-lg transition-shadow cursor-pointer"
             >
               <Quote className="w-8 h-8 text-blue-light mb-4" />
               <p className="text-muted-foreground leading-relaxed mb-6">{t.text}</p>
               <div className="flex items-center gap-1 mb-3">
                 {[...Array(t.rating)].map((_, j) => (
-                  <Star key={j} className="w-4 h-4 fill-accent text-accent" />
+                  <motion.div
+                    key={j}
+                    initial={{ scale: 0 }}
+                    animate={inView ? { scale: 1 } : {}}
+                    transition={{ delay: 0.3 + i * 0.15 + j * 0.08, type: "spring" }}
+                  >
+                    <Star className="w-4 h-4 fill-accent text-accent" />
+                  </motion.div>
                 ))}
               </div>
               <p className="font-semibold text-foreground">{t.name}</p>
