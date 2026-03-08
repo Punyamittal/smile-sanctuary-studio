@@ -27,7 +27,7 @@ import sparkleTooth from "@/assets/sparkle-tooth.png";
 import toothShield from "@/assets/tooth-shield.png";
 import toothbrush from "@/assets/toothbrush.png";
 import dentalMirror from "@/assets/dental-mirror.png";
-import doc2 from "@/assets/doctor2.jpg";
+import doc2 from "@/assets/dr-gunjan.jpg";
 
 // ─── DATA ────────────────────────────────────────────────────────────────────
 
