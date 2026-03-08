@@ -5,6 +5,7 @@ import useCountUp from "@/hooks/useCountUp";
 import { lazy, Suspense } from "react";
 import R3FErrorBoundary from "@/components/R3FErrorBoundary";
 import toothSplash from "@/assets/tooth-splash.png";
+import { Link } from "react-router-dom";
 
 const Tooth3D = lazy(() => import("@/components/Tooth3D"));
 
@@ -57,7 +58,7 @@ const HeroSection = () => {
   const words = ["Your", "Smile", "My", "Priority"];
 
   return (
-    <section id="home" className="relative min-h-screen flex flex-col overflow-hidden pt-20">
+    <section className="relative min-h-screen flex flex-col overflow-hidden pt-20">
       <motion.div
         className="absolute top-0 left-0 w-[600px] h-[600px] rounded-full bg-blue-light -translate-x-1/3 -translate-y-1/4 opacity-60"
         animate={{ scale: [1, 1.05, 1] }}
@@ -108,15 +109,14 @@ const HeroSection = () => {
             transition={{ duration: 0.6, delay: 1 }}
           >
             <Button asChild variant="accent" size="lg" className="rounded-full px-8 group">
-              <a href="#contact">
+              <Link to="/contact">
                 Book Appointment
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </a>
+              </Link>
             </Button>
           </motion.div>
         </div>
 
-        {/* Center – 3D Tooth with fallback */}
         <motion.div
           initial={{ opacity: 0, scale: 0.7 }}
           animate={{ opacity: 1, scale: 1 }}

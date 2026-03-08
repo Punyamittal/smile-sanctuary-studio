@@ -2,24 +2,31 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link, useLocation } from "react-router-dom";
 
 const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Testimonials", href: "#testimonials" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", to: "/" },
+  { label: "About", to: "/about" },
+  { label: "Services", to: "/services" },
+  { label: "Testimonials", to: "/testimonials" },
+  { label: "Contact", to: "/contact" },
 ];
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    setMobileOpen(false);
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   return (
     <nav
@@ -28,26 +35,30 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto flex items-center justify-between py-4 px-4">
-        <a href="#home" className="flex items-center gap-2">
+        <Link to="/" className="flex items-center gap-2">
           <span className="font-display text-xl font-bold tracking-wider text-primary">
             Dr. Sarah <span className="text-accent">Mitchell</span>
           </span>
-        </a>
+        </Link>
 
         <div className="hidden lg:flex items-center gap-8">
           {navLinks.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors uppercase tracking-wide"
+            <Link
+              key={l.to}
+              to={l.to}
+              className={`text-sm font-medium transition-colors uppercase tracking-wide ${
+                location.pathname === l.to
+                  ? "text-accent"
+                  : "text-muted-foreground hover:text-primary"
+              }`}
             >
               {l.label}
-            </a>
+            </Link>
           ))}
         </div>
 
         <Button asChild variant="accent" className="hidden lg:inline-flex rounded-full px-6">
-          <a href="#contact">Book Appointment</a>
+          <Link to="/contact">Book Appointment</Link>
         </Button>
 
         <button className="lg:hidden text-foreground" onClick={() => setMobileOpen(!mobileOpen)}>
@@ -65,17 +76,18 @@ const Navbar = () => {
           >
             <div className="container mx-auto py-4 px-4 flex flex-col gap-4">
               {navLinks.map((l) => (
-                <a
-                  key={l.href}
-                  href={l.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors uppercase"
+                <Link
+                  key={l.to}
+                  to={l.to}
+                  className={`text-sm font-medium transition-colors uppercase ${
+                    location.pathname === l.to ? "text-accent" : "text-muted-foreground hover:text-primary"
+                  }`}
                 >
                   {l.label}
-                </a>
+                </Link>
               ))}
               <Button asChild variant="accent" className="w-full rounded-full">
-                <a href="#contact" onClick={() => setMobileOpen(false)}>Book Appointment</a>
+                <Link to="/contact">Book Appointment</Link>
               </Button>
             </div>
           </motion.div>
