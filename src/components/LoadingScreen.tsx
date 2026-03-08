@@ -66,7 +66,7 @@ const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
               animate={{ y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              Dr. Sarah <span className="text-accent">Mitchell</span>
+              Amica <span className="text-accent">Dental Studio</span>
             </motion.h1>
           </div>
 

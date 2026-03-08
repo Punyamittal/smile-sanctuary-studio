@@ -42,7 +42,7 @@ const Footer = () => (
         <div>
           <button onClick={() => scrollTo("#home")} className="inline-flex items-center gap-2 font-display text-xl font-bold tracking-wider mb-4">
             <span className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center text-accent-foreground text-sm">♥</span>
-            Dr. Sarah <span className="text-accent">Mitchell</span>
+            Amica <span className="text-accent">Dental Studio</span>
           </button>
           <p className="text-primary-foreground/60 text-sm leading-relaxed">
             Providing personalized dental care with a gentle touch. Your smile is my passion.

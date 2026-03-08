@@ -4,7 +4,7 @@ import useCountUp from "@/hooks/useCountUp";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Shield, Heart, Award, GraduationCap, Calendar, Users, CheckCircle2, Lightbulb, Smile, Stethoscope } from "lucide-react";
-import doc2 from "@/assets/doctor2.jpg";
+import doc2 from "@/assets/dr-gunjan.jpg";
 import floatingTooth from "@/assets/floating-tooth.png";
 import toothShield from "@/assets/tooth-shield.png";
 import toothbrush from "@/assets/toothbrush.png";
@@ -121,7 +121,7 @@ const About = () => {
                   transition={{ duration: 0.4 }}
                   className="w-full max-w-md mx-auto aspect-[3/4] rounded-3xl overflow-hidden shadow-xl"
                 >
-                  <img src={doc2} alt="Dr. Sarah Mitchell" className="w-full h-full object-cover" loading="lazy" />
+                  <img src={doc2} alt="Dr. Gunjan Thakur" className="w-full h-full object-cover" loading="lazy" />
                 </motion.div>
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
@@ -138,7 +138,7 @@ const About = () => {
             <ScrollReveal direction="right">
               <p className="text-sm font-medium text-accent tracking-widest uppercase mb-4">My Story</p>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-                Hi, I'm Dr. Sarah Mitchell
+                Hi, I'm Dr. Gunjan Thakur
               </h2>
               <p className="text-muted-foreground text-lg leading-relaxed mb-4">
                 With over 15 years of experience in general and cosmetic dentistry, I've dedicated my career to creating beautiful, healthy smiles. My practice is built on a foundation of trust, comfort, and cutting-edge dental care.
