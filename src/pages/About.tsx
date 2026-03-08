@@ -8,6 +8,7 @@ import doc2 from "@/assets/doctor2.jpg";
 import floatingTooth from "@/assets/floating-tooth.png";
 import toothShield from "@/assets/tooth-shield.png";
 import toothbrush from "@/assets/toothbrush.png";
+import { ConnoisseurStack } from "@/components/ui/connoisseur-stack-interactor";
 
 const stats = [
   { icon: Shield, label: "Years of Practice", value: 15, suffix: "+" },
@@ -60,6 +61,27 @@ const dentalFacts = [
   "Your mouth produces over 25,000 quarts of saliva in a lifetime — enough to fill two swimming pools.",
 ];
 
+const dentalShowcase = [
+  {
+    num: "01",
+    name: "Teeth Whitening",
+    clipId: "clip-original",
+    image: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1000&q=80",
+  },
+  {
+    num: "02",
+    name: "Dental Implants",
+    clipId: "clip-hexagons",
+    image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1000&q=80",
+  },
+  {
+    num: "03",
+    name: "Smile Makeover",
+    clipId: "clip-pixels",
+    image: "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=1000&q=80",
+  },
+];
+
 const About = () => {
   const timelineRef = useRef(null);
   const timelineInView = useInView(timelineRef, { once: true, margin: "-100px" });
@@ -74,7 +96,6 @@ const About = () => {
 
       {/* Bio section */}
       <section className="py-24 bg-background relative overflow-hidden">
-        {/* Floating images */}
         <motion.img
           src={floatingTooth}
           alt=""
@@ -132,8 +153,31 @@ const About = () => {
         </div>
       </section>
 
+      {/* Interactive Dental Showcase */}
+      <section className="py-24 bg-card relative overflow-hidden">
+        <motion.img
+          src={toothShield}
+          alt=""
+          className="absolute top-8 right-[3%] w-24 md:w-32 opacity-[0.05] pointer-events-none"
+          animate={{ y: [0, -10, 0] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        />
+
+        <div className="container mx-auto px-4 relative z-10">
+          <ScrollReveal className="text-center mb-16">
+            <p className="text-sm font-medium text-accent tracking-widest uppercase mb-4">Explore</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground">Our Signature Treatments</h2>
+            <p className="text-muted-foreground mt-4 max-w-lg mx-auto">
+              Hover over each treatment to discover the transformative results we deliver every day.
+            </p>
+          </ScrollReveal>
+
+          <ConnoisseurStack items={dentalShowcase} />
+        </div>
+      </section>
+
       {/* Stats */}
-      <section className="py-16 bg-card">
+      <section className="py-16 bg-background">
         <div className="container mx-auto px-4 grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {stats.map((s, i) => (
             <StatCard key={s.label} {...s} delay={0.1 * i} />
@@ -142,7 +186,7 @@ const About = () => {
       </section>
 
       {/* Philosophy */}
-      <section className="py-24 bg-background relative overflow-hidden">
+      <section className="py-24 bg-card relative overflow-hidden">
         <motion.img
           src={toothShield}
           alt=""
@@ -161,7 +205,7 @@ const About = () => {
               <ScrollReveal key={p.title} delay={i * 0.1}>
                 <motion.div
                   whileHover={{ y: -6 }}
-                  className="flex gap-5 items-start bg-card rounded-2xl p-8 border border-border/50 hover:shadow-lg transition-all"
+                  className="flex gap-5 items-start bg-background rounded-2xl p-8 border border-border/50 hover:shadow-lg transition-all"
                 >
                   <div className="w-12 h-12 rounded-xl bg-blue-light flex items-center justify-center shrink-0">
                     <p.icon className="w-5 h-5 text-primary" />
@@ -178,7 +222,7 @@ const About = () => {
       </section>
 
       {/* Timeline */}
-      <section className="py-24 bg-card relative overflow-hidden" ref={timelineRef}>
+      <section className="py-24 bg-background relative overflow-hidden" ref={timelineRef}>
         <motion.img
           src={floatingTooth}
           alt=""
@@ -213,7 +257,7 @@ const About = () => {
                 }`}
               >
                 <div className={`flex-1 ${i % 2 === 0 ? "md:text-right" : "md:text-left"}`}>
-                  <div className="bg-background rounded-2xl p-6 shadow-sm border border-border/50 hover:shadow-md transition-shadow">
+                  <div className="bg-card rounded-2xl p-6 shadow-sm border border-border/50 hover:shadow-md transition-shadow">
                     <span className="text-accent font-bold text-lg">{item.year}</span>
                     <h3 className="font-semibold text-foreground mt-1">{item.title}</h3>
                     <p className="text-sm text-muted-foreground mt-1">{item.desc}</p>
@@ -230,7 +274,7 @@ const About = () => {
       </section>
 
       {/* Fun dental facts */}
-      <section className="py-24 bg-background relative overflow-hidden">
+      <section className="py-24 bg-card relative overflow-hidden">
         <motion.img
           src={toothbrush}
           alt=""
@@ -249,7 +293,7 @@ const About = () => {
               <ScrollReveal key={i} delay={i * 0.08}>
                 <motion.div
                   whileHover={{ scale: 1.04, rotate: 1 }}
-                  className="bg-card rounded-2xl p-6 border border-border/50 hover:shadow-lg transition-shadow h-full"
+                  className="bg-background rounded-2xl p-6 border border-border/50 hover:shadow-lg transition-shadow h-full"
                 >
                   <span className="text-4xl font-bold text-blue-light block mb-3">
                     {String(i + 1).padStart(2, "0")}
