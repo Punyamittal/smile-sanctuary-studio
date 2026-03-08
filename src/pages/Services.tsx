@@ -83,6 +83,7 @@ const Services = () => {
         subtitle="What I Offer"
         title="Comprehensive Dental Services"
         description="From routine cleanings to advanced cosmetic procedures — personalized care tailored to your unique needs."
+        variant="services"
       />
 
       {/* Services grid */}

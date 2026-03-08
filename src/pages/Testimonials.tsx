@@ -53,6 +53,7 @@ const Testimonials = () => {
         subtitle="Patient Stories"
         title="Real Smiles, Real Stories"
         description="Hear from the patients whose lives have been transformed by quality dental care."
+        variant="testimonials"
       />
 
       {/* Stats bar */}

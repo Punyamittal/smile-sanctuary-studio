@@ -92,6 +92,7 @@ const About = () => {
         subtitle="About Dr. Mitchell"
         title="Passionate About Your Dental Health"
         description="Over 15 years of experience in creating beautiful, healthy smiles with a gentle, patient-first approach."
+        variant="about"
       />
 
       {/* Bio section */}
