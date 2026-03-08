@@ -2,7 +2,7 @@ import HeroSection from "@/components/HeroSection";
 import ProcedureSection from "@/components/ProcedureSection";
 import ScrollReveal from "@/components/ScrollReveal";
 import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import {
   ArrowRight, Sparkles, Shield, Heart, Award, GraduationCap, Calendar,
   Users, CheckCircle2, Lightbulb, Smile, Stethoscope, Sun, Wrench,
