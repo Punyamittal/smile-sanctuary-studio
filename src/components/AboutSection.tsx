@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import ScrollReveal from "@/components/ScrollReveal";
 import useCountUp from "@/hooks/useCountUp";
 import { Shield, Heart, Award } from "lucide-react";
-import doc2 from "@/assets/doctor2.jpg";
+import doc2 from "@/assets/dr-gunjan.jpg";
 
 const stats = [
   { icon: Shield, label: "Years of Practice", value: 15, suffix: "+" },
