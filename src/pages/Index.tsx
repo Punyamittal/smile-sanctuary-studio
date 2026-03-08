@@ -2,12 +2,12 @@ import HeroSection from "@/components/HeroSection";
 import ProcedureSection from "@/components/ProcedureSection";
 import ScrollReveal from "@/components/ScrollReveal";
 import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import {
   ArrowRight, Sparkles, Shield, Heart, Award, GraduationCap, Calendar,
   Users, CheckCircle2, Lightbulb, Smile, Stethoscope, Sun, Wrench,
   Baby, Scissors, HelpCircle, Star, Quote, TrendingUp, Send,
-  MapPin, Phone, Mail, Clock, CalendarDays,
+  MapPin, Phone, Mail, Clock, CalendarDays, ChevronLeft, ChevronRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -157,7 +157,92 @@ const StatCard = ({ icon: Icon, label, value, suffix, delay }: typeof aboutStats
   );
 };
 
-// ─── MAIN PAGE ───────────────────────────────────────────────────────────────
+const TestimonialsCarousel = ({ testimonials, inView }: { testimonials: { name: string; role: string; text: string; rating: number }[]; inView: boolean }) => {
+  const [current, setCurrent] = useState(0);
+  const [autoplay, setAutoplay] = useState(true);
+  const total = testimonials.length;
+  const visibleCount = 3;
+
+  const next = useCallback(() => setCurrent((c) => (c + 1) % total), [total]);
+  const prev = useCallback(() => setCurrent((c) => (c - 1 + total) % total), [total]);
+
+  useEffect(() => {
+    if (!autoplay) return;
+    const id = setInterval(next, 4000);
+    return () => clearInterval(id);
+  }, [autoplay, next]);
+
+  const getVisibleIndices = () => {
+    const indices = [];
+    for (let i = 0; i < visibleCount; i++) {
+      indices.push((current + i) % total);
+    }
+    return indices;
+  };
+
+  const visible = getVisibleIndices();
+
+  return (
+    <div
+      className="relative"
+      onMouseEnter={() => setAutoplay(false)}
+      onMouseLeave={() => setAutoplay(true)}
+    >
+      <div className="grid md:grid-cols-3 gap-6">
+        {visible.map((idx, pos) => {
+          const t = testimonials[idx];
+          return (
+            <motion.div
+              key={`${idx}-${current}`}
+              initial={{ opacity: 0, x: 40, scale: 0.95 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              exit={{ opacity: 0, x: -40, scale: 0.95 }}
+              transition={{ duration: 0.5, delay: pos * 0.08, ease: [0.22, 1, 0.36, 1] }}
+              whileHover={{ scale: 1.03, y: -6 }}
+              className="bg-card rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all cursor-pointer border border-border/50"
+            >
+              <Quote className="w-8 h-8 text-blue-light mb-4" />
+              <p className="text-muted-foreground leading-relaxed mb-6">{t.text}</p>
+              <div className="flex items-center gap-1 mb-3">
+                {[...Array(t.rating)].map((_, j) => (
+                  <Star key={j} className="w-4 h-4 fill-accent text-accent" />
+                ))}
+              </div>
+              <p className="font-semibold text-foreground">{t.name}</p>
+              <p className="text-xs text-muted-foreground">{t.role}</p>
+            </motion.div>
+          );
+        })}
+      </div>
+
+      {/* Controls */}
+      <div className="flex items-center justify-center gap-4 mt-10">
+        <Button variant="outline" size="icon" className="rounded-full border-border hover:bg-primary hover:text-primary-foreground" onClick={prev}>
+          <ChevronLeft className="w-5 h-5" />
+        </Button>
+
+        <div className="flex items-center gap-2">
+          {Array.from({ length: Math.ceil(total / visibleCount) }).map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent(i * visibleCount)}
+              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                Math.floor(current / visibleCount) === i
+                  ? "bg-accent w-6"
+                  : "bg-border hover:bg-muted-foreground"
+              }`}
+            />
+          ))}
+        </div>
+
+        <Button variant="outline" size="icon" className="rounded-full border-border hover:bg-primary hover:text-primary-foreground" onClick={next}>
+          <ChevronRight className="w-5 h-5" />
+        </Button>
+      </div>
+    </div>
+  );
+};
+
 
 const Index = () => {
   const timelineRef = useRef(null);
@@ -433,30 +518,14 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Testimonials Grid */}
+      {/* Testimonials Carousel */}
       <section className="py-24 bg-background" ref={testimonialsRef}>
         <div className="container mx-auto px-4">
           <ScrollReveal className="text-center mb-16">
             <p className="text-sm font-medium text-accent tracking-widest uppercase mb-4">Reviews</p>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">What Our Patients Say</h2>
           </ScrollReveal>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {testimonials.map((t, i) => (
-              <motion.div key={t.name} initial={{ opacity: 0, y: 40, rotateY: 10 }} animate={testimonialsInView ? { opacity: 1, y: 0, rotateY: 0 } : {}} transition={{ duration: 0.7, delay: 0.08 * i, ease: [0.22, 1, 0.36, 1] }} whileHover={{ scale: 1.03, y: -6 }} className="bg-card rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all cursor-pointer border border-border/50">
-                <Quote className="w-8 h-8 text-blue-light mb-4" />
-                <p className="text-muted-foreground leading-relaxed mb-6">{t.text}</p>
-                <div className="flex items-center gap-1 mb-3">
-                  {[...Array(t.rating)].map((_, j) => (
-                    <motion.div key={j} initial={{ scale: 0 }} animate={testimonialsInView ? { scale: 1 } : {}} transition={{ delay: 0.3 + i * 0.08 + j * 0.06, type: "spring" }}>
-                      <Star className="w-4 h-4 fill-accent text-accent" />
-                    </motion.div>
-                  ))}
-                </div>
-                <p className="font-semibold text-foreground">{t.name}</p>
-                <p className="text-xs text-muted-foreground">{t.role}</p>
-              </motion.div>
-            ))}
-          </div>
+          <TestimonialsCarousel testimonials={testimonials} inView={testimonialsInView} />
         </div>
       </section>
 
