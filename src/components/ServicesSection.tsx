@@ -1,14 +1,11 @@
 import { motion, useInView } from "framer-motion";
-import { useRef, lazy, Suspense } from "react";
+import { useRef } from "react";
 import {
   Sparkles, Sun, Wrench, Stethoscope, Baby, Scissors, ArrowRight,
 } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
-import R3FErrorBoundary from "@/components/R3FErrorBoundary";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-
-const FloatingDentalElements = lazy(() => import("@/components/FloatingDentalElements"));
 
 const services = [
   { icon: Sparkles, title: "Teeth Cleaning", desc: "Thorough professional cleaning to keep your teeth and gums healthy." },
@@ -25,12 +22,6 @@ const ServicesSection = () => {
 
   return (
     <section className="py-24 bg-background relative" ref={ref}>
-      <R3FErrorBoundary>
-        <Suspense fallback={null}>
-          <FloatingDentalElements className="absolute inset-0 opacity-20 pointer-events-none" />
-        </Suspense>
-      </R3FErrorBoundary>
-
       <div className="container mx-auto px-4 relative z-10">
         <ScrollReveal className="text-center mb-16">
           <p className="text-sm font-medium text-accent tracking-widest uppercase mb-4">My Services</p>
